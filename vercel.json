@@ -17,12 +17,23 @@
       "continue": true
     },
     {
+      "src": "/favicon.svg",
+      "dest": "/favicon.svg"
+    },
+    {
       "src": "/favicon.ico",
       "dest": "/favicon.ico"
     },
     {
       "src": "/manifest.json",
       "dest": "/manifest.json"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
