@@ -6,8 +6,7 @@
       "use": "@vercel/static-build",
       "config": {
         "distDir": "build",
-        "nodeVersion": "18.17.0",
-        "buildCommand": "npm run build"
+        "nodeVersion": "18.17.0"
       }
     }
   ],
@@ -26,8 +25,15 @@
       "dest": "/manifest.json"
     },
     {
+      "src": "/logo192.png",
+      "dest": "/logo192.png"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/index.html",
+      "headers": {
+        "cache-control": "no-cache, no-store, must-revalidate"
+      }
     }
   ]
 } 
