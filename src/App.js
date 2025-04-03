@@ -28,7 +28,7 @@ export default function App() {
         <nav className="flex items-center justify-center p-6 lg:px-8" aria-label="Global">
           <div className="flex">
             <a href="/" className="-m-1.5 p-1.5">
-              <span className="text-2xl font-bold text-black">🏥 Provider Intelligence</span>
+              <span className="text-2xl font-bold text-black">🏥 Medical Provider Leads</span>
             </a>
           </div>
         </nav>
@@ -48,10 +48,10 @@ export default function App() {
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              The Largest Verified Database of Healthcare Decision-Makers
+              The <span className="bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent">Largest</span> Verified Database of Healthcare Providers
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Access comprehensive data on 9M+ healthcare providers, including verified contact information, practice details, and decision-making insights.
+              Access comprehensive data on 9M+ healthcare providers, including verified contact information and practice details.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
