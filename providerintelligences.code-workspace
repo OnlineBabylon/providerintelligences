@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "providerintelligences",
+			"path": "."
+		},
+		{
+			"name": "landing-page",
+			"path": "../doctordb/landing-page"
+		}
+	],
+	"settings": {}
+}
