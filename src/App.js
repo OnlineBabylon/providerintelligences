@@ -1,35 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Pricing from './Pricing';
+import ErrorPage from './ErrorPage';
 
-export default function App() {
-  const [selectedPlan, setSelectedPlan] = useState(null);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    // Track form submission event
-    if (window.gtag) {
-      window.gtag('event', 'form_submission', {
-        'event_category': 'engagement',
-        'event_label': 'signup_form',
-        'value': selectedPlan,
-        'plan_type': selectedPlan,
-        'email_domain': document.getElementById('email').value.split('@')[1]
-      });
+function HomePage() {
+  useEffect(() => {
+    // Initialize Tally form
+    if (window.Tally) {
+      window.Tally.loadEmbeds();
     }
-
-    // Here you would typically handle the form submission
-    // For now, we'll just show an alert
-    alert('Thank you for your interest! We will contact you shortly.');
-  };
+  }, []);
 
   return (
     <div className="bg-white">
       <header className="absolute inset-x-0 top-0 z-50">
         <nav className="flex items-center justify-center p-6 lg:px-8" aria-label="Global">
           <div className="flex">
-            <a href="/" className="-m-1.5 p-1.5">
+            <Link to="/" className="-m-1.5 p-1.5">
               <span className="text-2xl font-bold text-black">🏥 Medical Provider Leads</span>
-            </a>
+            </Link>
           </div>
         </nav>
       </header>
@@ -54,12 +43,12 @@ export default function App() {
               Access comprehensive data on 9M+ healthcare providers, including verified contact information and practice details.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#contact"
+              <Link
+                to="/pricing"
                 className="rounded-md bg-primary-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
               >
                 Get Started
-              </a>
+              </Link>
               <a href="#features" className="text-sm font-semibold leading-6 text-gray-900">
                 Learn more <span aria-hidden="true">→</span>
               </a>
@@ -204,252 +193,135 @@ export default function App() {
               </div>
             </div>
           </div>
+
+          <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+            <div
+              className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-primary-200 to-primary-400 opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+              style={{
+                clipPath:
+                  'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+              }}
+            />
+          </div>
         </div>
 
-        <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
-          <div
-            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-primary-200 to-primary-400 opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-            style={{
-              clipPath:
-                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-            }}
-          />
-        </div>
-      </div>
-
-      <div id="features" className="mx-auto mt-32 max-w-7xl px-6 sm:mt-56 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-primary-600">Faster Sales Cycles</h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Everything you need to accelerate healthcare sales
-          </p>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-            Access verified contact information and practice details for healthcare providers across the United States.
-          </p>
-        </div>
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-            {features.map((feature) => (
-              <div key={feature.name} className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                  <feature.icon className="h-5 w-5 flex-none text-primary-600" aria-hidden="true" />
-                  {feature.name}
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                  <p className="flex-auto">{feature.description}</p>
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </div>
-
-      <div id="how-it-works" className="mx-auto mt-32 max-w-7xl px-6 sm:mt-56 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-primary-600">How It Works</h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Simple, powerful, and effective
-          </p>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-            Get started in minutes with our intuitive platform designed for healthcare sales teams.
-          </p>
-        </div>
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-            {steps.map((step) => (
-              <div key={step.name} className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                  <step.icon className="h-5 w-5 flex-none text-primary-600" aria-hidden="true" />
-                  {step.name}
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                  <p className="flex-auto">{step.description}</p>
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </div>
-
-      <div id="contact" className="mx-auto mt-32 max-w-7xl px-6 sm:mt-56 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-primary-600">Start your 30-day free trial</h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Access our complete healthcare provider database
-          </p>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-            Setup and use Provider Intelligence without any limits or restrictions. Start accessing verified healthcare provider data in the next few minutes, sign up below:
-          </p>
-          <p className="mt-2 text-sm text-gray-600">
-            You can change your plan later or at any time.
-          </p>
-        </div>
-
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-            <div 
-              className={`flex flex-col items-center text-center p-6 rounded-lg cursor-pointer transition-all duration-200 ${
-                selectedPlan === 'starter' 
-                  ? 'ring-2 ring-primary-600 bg-primary-50' 
-                  : 'hover:ring-2 hover:ring-gray-300 hover:bg-gray-50'
-              }`}
-              onClick={() => setSelectedPlan('starter')}
-            >
-              <dt className="text-base font-semibold leading-7 text-gray-900">
-                <div className="flex items-center justify-center gap-x-2">
-                  <span className="text-3xl font-bold">$492</span>
-                  <span className="text-sm font-normal text-gray-500">/month</span>
+        <div id="features" className="mx-auto mt-32 max-w-7xl px-6 sm:mt-56 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:text-center">
+            <h2 className="text-base font-semibold leading-7 text-primary-600">Faster Sales Cycles</h2>
+            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Everything you need to accelerate healthcare sales
+            </p>
+            <p className="mt-6 text-lg leading-8 text-gray-600">
+              Access verified contact information and practice details for healthcare providers across the United States.
+            </p>
+          </div>
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+              {features.map((feature) => (
+                <div key={feature.name} className="flex flex-col">
+                  <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                    <feature.icon className="h-5 w-5 flex-none text-primary-600" aria-hidden="true" />
+                    {feature.name}
+                  </dt>
+                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                    <p className="flex-auto">{feature.description}</p>
+                  </dd>
                 </div>
-              </dt>
-              <dd className="mt-4 text-base leading-7 text-gray-600">
-                100,000 contact exports
-              </dd>
-            </div>
-            <div 
-              className={`flex flex-col items-center text-center p-6 rounded-lg cursor-pointer transition-all duration-200 ${
-                selectedPlan === 'professional' 
-                  ? 'ring-2 ring-primary-600 bg-primary-50' 
-                  : 'hover:ring-2 hover:ring-gray-300 hover:bg-gray-50'
-              }`}
-              onClick={() => setSelectedPlan('professional')}
-            >
-              <dt className="text-base font-semibold leading-7 text-gray-900">
-                <div className="flex items-center justify-center gap-x-2">
-                  <span className="text-3xl font-bold">$769</span>
-                  <span className="text-sm font-normal text-gray-500">/month</span>
-                </div>
-              </dt>
-              <dd className="mt-4 text-base leading-7 text-gray-600">
-                1,000,000 contact exports
-              </dd>
-            </div>
-            <div 
-              className={`flex flex-col items-center text-center p-6 rounded-lg cursor-pointer transition-all duration-200 ${
-                selectedPlan === 'enterprise' 
-                  ? 'ring-2 ring-primary-600 bg-primary-50' 
-                  : 'hover:ring-2 hover:ring-gray-300 hover:bg-gray-50'
-              }`}
-              onClick={() => setSelectedPlan('enterprise')}
-            >
-              <dt className="text-base font-semibold leading-7 text-gray-900">
-                <div className="flex items-center justify-center gap-x-2">
-                  <span className="text-3xl font-bold">$1.5K</span>
-                  <span className="text-sm font-normal text-gray-500">/month</span>
-                </div>
-              </dt>
-              <dd className="mt-4 text-base leading-7 text-gray-600">
-                Unlimited contact exports
-              </dd>
-            </div>
-          </dl>
+              ))}
+            </dl>
+          </div>
         </div>
 
-        <form className="mx-auto mt-16 max-w-xl sm:mt-20" onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 gap-x-8 gap-y-6">
-            <div>
-              <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">
-                Your email address
-              </label>
-              <div className="mt-2.5">
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  autoComplete="email"
-                  placeholder="luna@company.com"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="password" className="block text-sm font-semibold leading-6 text-gray-900">
-                Create a password
-              </label>
-              <div className="mt-2.5">
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  autoComplete="new-password"
-                  placeholder="Shh, it's a secret..."
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="card" className="block text-sm font-semibold leading-6 text-gray-900">
-                Credit card info
-              </label>
-              <div className="mt-2.5 grid grid-cols-3 gap-4">
-                <input
-                  type="text"
-                  name="card-number"
-                  id="card-number"
-                  maxLength="19"
-                  placeholder="1234 5678 9012 3456"
-                  pattern="[0-9\s]{13,19}"
-                  className="col-span-2 block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
-                  onKeyPress={(e) => {
-                    if (!/[0-9\s]/.test(e.key)) {
-                      e.preventDefault();
-                    }
-                  }}
-                  onChange={(e) => {
-                    let value = e.target.value.replace(/\s/g, '');
-                    if (value.length > 16) value = value.slice(0, 16);
-                    value = value.replace(/(\d{4})/g, '$1 ').trim();
-                    e.target.value = value;
-                  }}
-                />
-                <input
-                  type="text"
-                  name="card-cvc"
-                  id="card-cvc"
-                  maxLength="4"
-                  placeholder="123"
-                  pattern="[0-9]{3,4}"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
-                  onKeyPress={(e) => {
-                    if (!/[0-9]/.test(e.key)) {
-                      e.preventDefault();
-                    }
-                  }}
-                />
-              </div>
-            </div>
-            <div>
-              <button
-                type="submit"
-                className="block w-full rounded-md bg-primary-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
-              >
-                Create account
-              </button>
-            </div>
-            <p className="text-sm text-gray-500 text-center">
+        <div id="how-it-works" className="mx-auto mt-32 max-w-7xl px-6 sm:mt-56 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:text-center">
+            <h2 className="text-base font-semibold leading-7 text-primary-600">How It Works</h2>
+            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Simple, powerful, and effective
+            </p>
+            <p className="mt-6 text-lg leading-8 text-gray-600">
+              Get started in minutes with our intuitive platform designed for healthcare sales teams.
+            </p>
+          </div>
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+              {steps.map((step) => (
+                <div key={step.name} className="flex flex-col">
+                  <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                    <step.icon className="h-5 w-5 flex-none text-primary-600" aria-hidden="true" />
+                    {step.name}
+                  </dt>
+                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                    <p className="flex-auto">{step.description}</p>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+
+        <div id="contact" className="mx-auto mt-32 max-w-7xl px-6 sm:mt-56 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:text-center">
+            <h2 className="text-base font-semibold leading-7 text-primary-600">Start your 30-day free trial</h2>
+            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Access our complete healthcare provider database
+            </p>
+            <p className="mt-6 text-lg leading-8 text-gray-600">
+              Setup and use Provider Intelligence without any limits or restrictions. Start accessing verified healthcare provider data in the next few minutes, sign up below:
+            </p>
+            <p className="mt-2 text-sm text-gray-600">
+              You can change your plan later or at any time.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-16 max-w-xl sm:mt-20">
+            <iframe
+              data-tally-src="https://tally.so/embed/w7EY0R?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+              loading="lazy"
+              width="100%"
+              height="364"
+              frameBorder="0"
+              marginHeight="0"
+              marginWidth="0"
+              title="MedicalProviderLeads"
+              style={{ maxWidth: '100%', margin: '0 auto' }}
+            ></iframe>
+            <p className="mt-4 text-sm text-gray-500 text-center">
               Your card will not be charged until your 30-day trial has ended, and you can cancel + export your data any time before that.
             </p>
           </div>
-        </form>
 
-        <div className="mt-16 text-center">
-          <h3 className="text-sm font-semibold text-gray-900">Trusted by leading healthcare sales teams at:</h3>
-          <div className="mt-6 flex justify-center gap-x-8">
-            <span className="text-lg font-semibold text-gray-900">IBM Healthcare</span>
-            <span className="text-lg font-semibold text-gray-900">McKesson</span>
-            <span className="text-lg font-semibold text-gray-900">Cardinal Health</span>
-            <span className="text-lg font-semibold text-gray-900">Medtronic</span>
+          <div className="mt-16 text-center">
+            <h3 className="text-sm font-semibold text-gray-900">Trusted by leading healthcare sales teams at:</h3>
+            <div className="mt-6 flex justify-center gap-x-8">
+              <span className="text-lg font-semibold text-gray-900">IBM Healthcare</span>
+              <span className="text-lg font-semibold text-gray-900">McKesson</span>
+              <span className="text-lg font-semibold text-gray-900">Cardinal Health</span>
+              <span className="text-lg font-semibold text-gray-900">Medtronic</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <footer className="mx-auto mt-32 max-w-7xl px-6 pb-8 sm:mt-56 lg:px-8">
-        <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
-          <p className="text-xs leading-5 text-gray-500">
-            &copy; 2024 Provider Intelligence. All rights reserved.
-          </p>
-        </div>
-      </footer>
+        <footer className="mx-auto mt-32 max-w-7xl px-6 pb-8 sm:mt-56 lg:px-8">
+          <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
+            <p className="text-xs leading-5 text-gray-500">
+              &copy; 2024 Provider Intelligence. All rights reserved.
+            </p>
+          </div>
+        </footer>
+      </div>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/error" element={<ErrorPage />} />
+      </Routes>
+    </Router>
   );
 }
 
