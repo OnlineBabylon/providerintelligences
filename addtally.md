@@ -1,13 +1,3 @@
-ok i have a tally form - @https://tally.so/embed/w7EY0R?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1  I want you to use this as the form to collect email and password, so use this as the form, but keep the branding and landing page the same, just replace form (in image) flow will be landing page --> form submit --> pricing page (keep the same pricing plans- $492
-/month
-100,000 contact exports
-$769
-/month
-1,000,000 contact exports
-$1.5K
-/month
-Unlimited contact exports
-) --> err page -
 
 Tally Form:
 Embed code
