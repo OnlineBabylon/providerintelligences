@@ -548,7 +548,7 @@ const LandingPage = () => {
             providers now
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-12">
-            Access <span className="underline decoration-gray-400">9M+ verified providers</span> with complete contact information and <span className="underline decoration-gray-400">practice details</span> to accelerate your healthcare sales.
+            Access <span className="underline decoration-[#86efac] decoration-2">9M+ verified providers</span> with complete <span className="underline decoration-[#86efac] decoration-2">contact information</span> and <span className="underline decoration-[#86efac] decoration-2">practice details</span> to accelerate your healthcare sales.
           </p>
           
           {/* Trusted By Section - Moved here */}
