@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { 
   ArrowLongRightIcon,
   ArrowDownTrayIcon
@@ -11,7 +11,6 @@ import {
 import { 
   getStateFullName, 
   getSpecialtyFullName, 
-  getRelatedSpecialties,
   getStateSlug,
   getSpecialtySlug,
   getSpecialtyCodeFromSlug

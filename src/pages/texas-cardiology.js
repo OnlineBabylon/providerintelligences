@@ -22,9 +22,6 @@ const TexasCardiology = () => {
   const [actionType, setActionType] = useState('');
   const providersPerPage = 10;
   
-  // Formspark form ID - replace with your actual form ID
-  const FORMSPARK_FORM_ID = "example2YK3";
-  
   useEffect(() => {
     setIsVisible(true);
     const fetchProviders = async () => {
