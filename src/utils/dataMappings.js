@@ -225,4 +225,19 @@ export function getEstimatedProviderCount(stateCode, specialtyCode) {
   
   const key = `${stateCode}_${specialtyCode}`;
   return counts[key] || 500; // Default count if not found
+}
+
+/**
+ * Get the specialty code from a URL slug
+ * @param {string} slug - The URL-friendly specialty slug (e.g., 'cardiology')
+ * @returns {string|null} The specialty code or null if not found
+ */
+export function getSpecialtyCodeFromSlug(slug) {
+  const normalizedSlug = slug.toLowerCase().trim();
+  for (const [code, slugValue] of Object.entries(specialtySlugs)) {
+    if (slugValue === normalizedSlug) {
+      return code;
+    }
+  }
+  return null;
 } 

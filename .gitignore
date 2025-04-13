@@ -1,0 +1,35 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Production
+/build
+
+# NNPES Data
+/NNPES Data
+/NNPES_Data
+/NNPES-Data
+/NPPES Data
+/NPPES_Data
+/NPPES-Data
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace 
