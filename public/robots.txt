@@ -1,0 +1,6 @@
+# Allow all web crawlers to access all content
+User-agent: *
+Allow: /
+
+# Specify location of sitemap
+Sitemap: https://providerintelligences.com/sitemap.xml 
